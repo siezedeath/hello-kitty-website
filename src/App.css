@@ -1,3 +1,4 @@
+/* Basic App Styles */
 .App {
   text-align: center;
 }
@@ -36,3 +37,454 @@
     transform: rotate(360deg);
   }
 }
+
+/* Page and body styling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: block; /* Enable vertical scrolling */
+  min-height: 100vh;
+  background-color: var(--dark-color);
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  background-color: #fce4ec; /* Hello Kitty themed pink background */
+  scroll-snap-type: y mandatory; /* Enable scroll snapping for sections */
+}
+
+/* Snap behavior for each section */
+.section {
+  scroll-snap-align: start; /* Each section starts at the top when scrolling */
+  height: 100vh; /* Fullscreen sections */
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Flower Animation: Blooming and Growing */
+.flower {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  transform-origin: bottom center;
+  animation: grow-stem 3s forwards ease-out;
+}
+
+/* Petal styling for the flower */
+.petal {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: pink;
+  border-radius: 50%;
+  transform: scale(0); /* Start hidden */
+  animation: bloom 2s forwards ease-in-out 2s; /* Bloom petals after stem grows */
+}
+
+.petal-1 { top: 0; left: 15px; }
+.petal-2 { top: 15px; left: 30px; }
+.petal-3 { top: 30px; left: 15px; }
+.petal-4 { top: 15px; left: 0; }
+
+/* Center of the flower */
+.center {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 20px;
+  height: 20px;
+  background-color: yellow;
+  border-radius: 50%;
+  transform: scale(0); /* Hidden initially */
+  animation: bloom 2s forwards ease-in-out 2.2s; /* Bloom after petals */
+}
+
+/* Animation for growing the flower stem */
+@keyframes grow-stem {
+  0% {
+    transform: scaleY(0); /* Stem starts from zero height */
+  }
+  100% {
+    transform: scaleY(1); /* Full growth */
+  }
+}
+
+/* Animation for blooming the petals and the center */
+@keyframes bloom {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Animated light coming from the flowers */
+.flower__light {
+  position: absolute;
+  bottom: 0;
+  width: 1vmin;
+  height: 1vmin;
+  background-color: rgb(255, 251, 0);
+  border-radius: 50%;
+  filter: blur(0.2vmin);
+  animation: light-ans 4s linear infinite;
+}
+
+/* Light animation keyframes */
+@keyframes light-ans {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15vmin);
+  }
+  100% {
+    transform: translateY(-30vmin);
+    opacity: 0;
+    filter: blur(1vmin);
+  }
+}
+
+/* Basic layout styling for the entire section */
+.section h1,
+.section h2 {
+  color: #e91e63; /* Hello Kitty themed pink */
+  font-family: 'Comic Sans MS', cursive;
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.photo-grid img {
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Button styling */
+button {
+  background-color: #e91e63; /* Hello Kitty pink */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #c2185b;
+}
+
+/* Drum Roll Animation */
+.drum {
+  --drum-yellow: #e9c46a;
+  --drum-dark-yellow: #cf9b1f;
+  --drum-light-red: #ef233c;
+  --drum-dark-red: #6a040f;
+  --drum-white: #edf6f9;
+  --drum-top: #cec2ab;
+  --drum-stick: #887880;
+  
+  position: relative;
+  width: 16rem;
+  height: 17rem;
+  transform: rotate(5deg);
+  margin: 2rem auto; /* Center drum */
+}
+
+.drum .side {
+  position: absolute;
+  top: 6rem;
+}
+
+.drum .side__bottom {
+  position: absolute;
+  top: 3rem;
+  width: 16rem;
+  height: 8rem;
+  background-color: var(--drum-yellow);
+  border-radius: 0 0 50% 50% / 0 0 2rem 2rem;
+}
+
+.drum .side__bottom::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -3rem;
+  width: 16rem;
+  height: 9rem;
+  background-color: var(--drum-dark-red);
+  border-radius: 0 0 50% 50% / 0 0 2rem 2rem;
+}
+
+.drum .side__bottom::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -3.2rem;
+  width: 16rem;
+  height: 9rem;
+  background-color: var(--drum-light-red);
+  border-radius: 0 0 50% 50% / 0 0 2rem 2rem;
+}
+
+.drum .side__top {
+  position: absolute;
+  width: 16rem;
+  height: 3rem;
+}
+
+.drum .side__top::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 16rem;
+  height: 3rem;
+  background-color: var(--drum-dark-red);
+  border-radius: 0 0 50% 50% / 0 0 2rem 2rem;
+}
+
+.drum .side__top::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -1.2rem;
+  width: 16rem;
+  height: 4rem;
+  background-color: var(--drum-yellow);
+  border-radius: 0 0 50% 50% / 0 0 2rem 2rem;
+}
+
+.drum .top {
+  position: absolute;
+  top: 2rem;
+  width: 16rem;
+  height: 5rem;
+  background-color: var(--drum-dark-yellow);
+  border-radius: 50% / 2rem;
+  overflow: hidden;
+}
+
+.drum .top::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 1rem;
+  width: 16rem;
+  height: 4rem;
+  background-color: var(--drum-top);
+  border-radius: 50% / 2rem;
+}
+
+.drum .top::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -0.1rem;
+  left: -0.5rem;
+  box-sizing: border-box;
+  width: 17rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  border: 0.4rem solid var(--drum-yellow);
+}
+
+.drum .drum-stick {
+  position: absolute;
+  z-index: 5;
+  width: 12rem;
+  height: 0.6rem;
+  background: var(--drum-stick);
+  border-radius: 50% 20% 20% 50% / 50%;
+  transform-origin: 90% 50%;
+}
+
+.drum .drum-stick::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 0.8rem;
+  height: 0.6rem;
+  background: var(--drum-stick);
+  border-radius: 50%;
+}
+
+.drum .drum-stick.drum-stick--left {
+  left: -14rem;
+  top: -1rem;
+  transform: rotate(-170deg);
+  animation: anim-drum-stick-left 0.3s infinite;
+}
+
+.drum .drum-stick.drum-stick--right {
+  left: 9rem;
+  top: -1rem;
+  transform: rotate(-30deg);
+  animation: anim-drum-stick-right 0.3s infinite;
+}
+
+.drum .drum-stick-shadow {
+  position: absolute;
+  top: 4rem;
+  width: 3rem;
+  height: 1.5rem;
+  background: radial-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0) 50%);
+  border-radius: 50%;
+}
+
+.drum .drum-stick-shadow.drum-stick-shadow--left {
+  left: 4.5rem;
+  animation: anim-drum-shadow-left 0.3s infinite;
+}
+
+.drum .drum-stick-shadow.drum-stick-shadow--right {
+  left: 9rem;
+  animation: anim-drum-shadow-right 0.3s infinite;
+}
+
+@keyframes anim-drum-stick-left {
+  0%   { transform: rotate(-170deg) translateX(1rem); }
+  50%   { transform: rotate(-150deg) translateX(0); }
+  100% { transform: rotate(-170deg) translateX(1rem); }
+}
+
+@keyframes anim-drum-shadow-left {
+  0%   { transform: scale(1.6); opacity: 0.3; }
+  50%   { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0.3; }
+}
+
+@keyframes anim-drum-stick-right {
+  0%   { transform: rotate(-30deg) translateX(0); }
+  50%   { transform: rotate(-10deg) translateX(1rem); }
+  100% { transform: rotate(-30deg) translateX(0); }
+}
+
+@keyframes anim-drum-shadow-right {
+  0%   { transform: scale(0.6); opacity: 1; }
+  50%   { transform: scale(1.6); opacity: 0.3; }
+  100% { transform: scale(0.6); opacity: 1; }
+}
+
+/* Drum click instructions */
+h2 {
+  font-size: 1.5rem;
+  color: #6a040f;
+  font-family: 'Comic Sans MS', cursive;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Surprise Styling */
+.surprise {
+  margin-top: 2rem;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.surprise-image {
+  width: 300px;
+  height: auto;
+  margin: 1rem 0;
+  border-radius: 8px;
+}
+
+.surprise-text {
+  font-size: 1.5rem;
+  color: #e91e63; /* Hello Kitty pink */
+  font-family: 'Comic Sans MS', cursive;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Surprise Section: Tickets displayed side by side */
+/* CSS for the Don Toliver tickets */
+/* CSS for the Don Toliver tickets */
+.tickets-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between images */
+  margin-top: 2rem;
+}
+
+.surprise-image, .surprise-image-1 {
+  width: 300px;
+  height: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Ensure image fits within the box without zooming in */
+  border-radius: 8px;
+}
+
+/* Assign larger width to the second image */
+.surprise-image-1 {
+  width: 500px;
+}
+
+.surprise-text {
+  font-size: 1.5rem;
+  color: #e91e63; /* Hello Kitty pink */
+  font-family: 'Comic Sans MS', cursive;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* Styling for the surprise section */
+.surprise {
+  margin-top: 2rem;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Grid for trio images */
+.trio-images-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Space between images */
+  margin-top: 1rem;
+}
+
+/* Individual trio images */
+.trio-image {
+  width: 300px;
+  height: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Ensure image fits within the box without zooming in */
+  border-radius: 8px;
+}
+
+.surprise-text {
+  font-size: 1.5rem;
+  color: #e91e63; /* Hello Kitty pink */
+  font-family: 'Comic Sans MS', cursive;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
